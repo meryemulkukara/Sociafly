@@ -31,8 +31,8 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public Optional<User> getUserById(String _id) {
-        return userRepository.findById(_id);
+    public Optional<User> getUserById(String id) {
+        return userRepository.findById(id);
     }
 
     public Optional<User> getUserByUsername(String username) {
@@ -43,8 +43,8 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
-    public User updateUser(String _id, User updatedUser) {
-        return userRepository.findById(_id)
+    public User updateUser(String id, User updatedUser) {
+        return userRepository.findById(id)
                 .map(existingUser -> {
                     // Update fields
                     existingUser.setFirstName(updatedUser.getFirstName());
@@ -63,11 +63,11 @@ public class UserService {
                     
                     return userRepository.save(existingUser);
                 })
-                .orElseThrow(() -> new RuntimeException("User not found with id: " + _id));
+                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
     }
 
-    public void deleteUser(String _id) {
-        userRepository.deleteById(_id);
+    public void deleteUser(String id) {
+        userRepository.deleteById(id);
     }
 
     public List<User> getAllUsers() {
@@ -82,38 +82,38 @@ public class UserService {
         return userRepository.findByIsVerifiedTrue();
     }
 
-    public User updateUserStatus(String _id, boolean isActive) {
-        return userRepository.findById(_id)
+    public User updateUserStatus(String id, boolean isActive) {
+        return userRepository.findById(id)
                 .map(user -> {
                     user.setIsActive(isActive);
                     user.setUpdatedAt(LocalDateTime.now());
                     return userRepository.save(user);
                 })
-                .orElseThrow(() -> new RuntimeException("User not found with id: " + _id));
+                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
     }
 
-    public User updateUserVerification(String _id, boolean isVerified) {
-        return userRepository.findById(_id)
+    public User updateUserVerification(String id, boolean isVerified) {
+        return userRepository.findById(id)
                 .map(user -> {
                     user.setIsVerified(isVerified);
                     user.setUpdatedAt(LocalDateTime.now());
                     return userRepository.save(user);
                 })
-                .orElseThrow(() -> new RuntimeException("User not found with id: " + _id));
+                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
     }
 
-    public User updateUserRoles(String _id, Set<String> roles) {
-        return userRepository.findById(_id)
+    public User updateUserRoles(String id, Set<String> roles) {
+        return userRepository.findById(id)
                 .map(user -> {
                     user.setRoles(roles);
                     user.setUpdatedAt(LocalDateTime.now());
                     return userRepository.save(user);
                 })
-                .orElseThrow(() -> new RuntimeException("User not found with id: " + _id));
+                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
     }
 
-    public void updateLastLogin(String _id) {
-        userRepository.findById(_id)
+    public void updateLastLogin(String id) {
+        userRepository.findById(id)
                 .ifPresent(user -> {
                     user.setLastLogin(LocalDateTime.now());
                     userRepository.save(user);

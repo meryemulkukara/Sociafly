@@ -26,8 +26,8 @@ public class UserController {
 
 
     @GetMapping("/{_id}")
-    public ResponseEntity<User> getUserById(@PathVariable("_id") String _id) {
-        return userService.getUserById(_id)
+    public ResponseEntity<User> getUserById(@PathVariable("_id") String id) {
+        return userService.getUserById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
@@ -50,9 +50,9 @@ public class UserController {
 
 
     @PutMapping("/{_id}")
-    public ResponseEntity<User> updateUser(@PathVariable("_id") String _id, @RequestBody User user) {
+    public ResponseEntity<User> updateUser(@PathVariable("_id") String id, @RequestBody User user) {
         try {
-            return ResponseEntity.ok(userService.updateUser(_id, user));
+            return ResponseEntity.ok(userService.updateUser(id, user));
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
@@ -60,8 +60,8 @@ public class UserController {
 
 
     @DeleteMapping("/{_id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable("_id") String _id) {
-        userService.deleteUser(_id);
+    public ResponseEntity<Void> deleteUser(@PathVariable("_id") String id) {
+        userService.deleteUser(id);
         return ResponseEntity.ok().build();
     }
 
@@ -92,10 +92,10 @@ public class UserController {
 
     @PatchMapping("/{_id}/status")
     public ResponseEntity<User> updateUserStatus(
-            @PathVariable("_id") String _id,
+            @PathVariable("_id") String id,
             @RequestParam boolean isActive) {
         try {
-            return ResponseEntity.ok(userService.updateUserStatus(_id, isActive));
+            return ResponseEntity.ok(userService.updateUserStatus(id, isActive));
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
@@ -104,10 +104,10 @@ public class UserController {
 
     @PatchMapping("/{_id}/verification")
     public ResponseEntity<User> updateUserVerification(
-            @PathVariable("_id") String _id,
+            @PathVariable("_id") String id,
             @RequestParam boolean isVerified) {
         try {
-            return ResponseEntity.ok(userService.updateUserVerification(_id, isVerified));
+            return ResponseEntity.ok(userService.updateUserVerification(id, isVerified));
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
@@ -116,18 +116,18 @@ public class UserController {
     
     @PatchMapping("/{_id}/roles")
     public ResponseEntity<User> updateUserRoles(
-            @PathVariable("_id") String _id,
+            @PathVariable("_id") String id,
             @RequestBody Set<String> roles) {
         try {
-            return ResponseEntity.ok(userService.updateUserRoles(_id, roles));
+            return ResponseEntity.ok(userService.updateUserRoles(id, roles));
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
     }
 
     @PatchMapping("/{_id}/last-login")
-    public ResponseEntity<Void> updateLastLogin(@PathVariable("_id") String _id) {
-        userService.updateLastLogin(_id);
+    public ResponseEntity<Void> updateLastLogin(@PathVariable("_id") String id) {
+        userService.updateLastLogin(id);
         return ResponseEntity.ok().build();
     }
 
