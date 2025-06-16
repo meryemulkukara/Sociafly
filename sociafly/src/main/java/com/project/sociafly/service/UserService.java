@@ -22,9 +22,13 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    // Create a new user
+
     public User createUser(User user) {
-        // Encode password before saving
+        
+        if (existsByEmail(user.getEmail())) {
+            throw new RuntimeException("A user with this email already exists");
+        }
+        
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setCreatedAt(LocalDateTime.now());
         user.setUpdatedAt(LocalDateTime.now());
