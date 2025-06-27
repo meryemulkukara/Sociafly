@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: sociafly
+
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: sociafly
+
+server:
+  port: 8083
+
+
+jwt:
+  secret: mySecretKeyThatIsAtLeast512BitsLongForHS512AlgorithmToWorkProperly123456789
+  expiration: 86400000
