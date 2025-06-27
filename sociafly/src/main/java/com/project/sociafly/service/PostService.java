@@ -36,8 +36,12 @@ public class PostService {
         return postRepository.findByUserIdOrderByCreatedAtDesc(userId);
     }
 
-    public List<Post> getPublicPosts() {
-        return postRepository.findByIsPublicTrueOrderByCreatedAtDesc();
+    public List<Post> getAllPosts() {
+        return postRepository.findAll();
+    }
+
+    public List<Post> getPublicPosts(String userId) {
+        return postRepository.getAllByUserId(userId);
     }
 
     public Post updatePost(String id, Post updatedPost) {

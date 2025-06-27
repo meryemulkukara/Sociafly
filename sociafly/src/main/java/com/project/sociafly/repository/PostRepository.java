@@ -12,6 +12,8 @@ public interface PostRepository extends MongoRepository<Post, String> {
     List<Post> findByUserId(String userId);
     List<Post> findByUserIdOrderByCreatedAtDesc(String userId);
     List<Post> findByIsPublicTrueOrderByCreatedAtDesc();
+    List<Post> getAllByUserId(String userId);
+
     List<Post> findByTagsContaining(String tag);
     List<Post> findByCreatedAtAfter(LocalDateTime date);
     List<Post> findByLikedByContaining(String userId);

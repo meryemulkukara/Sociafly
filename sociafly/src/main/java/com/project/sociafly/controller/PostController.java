@@ -35,9 +35,9 @@ public class PostController {
         return ResponseEntity.ok(postService.getPostsByUserId(userId));
     }
 
-    @GetMapping("/public")
-    public ResponseEntity<List<Post>> getPublicPosts() {
-        return ResponseEntity.ok(postService.getPublicPosts());
+    @GetMapping("/all")
+    public ResponseEntity<List<Post>> getAllPosts() {
+        return ResponseEntity.ok(postService.getAllPosts());
     }
 
     @PutMapping("/{id}")
