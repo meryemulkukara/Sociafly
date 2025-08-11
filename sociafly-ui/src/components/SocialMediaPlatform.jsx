@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Heart, MessageCircle, Share, Bookmark, MoreHorizontal, Plus, Search, Bell, Mail, User, Home, TrendingUp, Settings } from 'lucide-react';
 import UserList from './UserList';
 import PostList from './PostList';
+import SearchAppBar from './SearchAppBar';
 
 const SocialMediaPlatform = () => {
     const [activeTab, setActiveTab] = useState('home');
@@ -11,68 +12,9 @@ const SocialMediaPlatform = () => {
 
 
     return (
-        <div className="min-h-screen bg-gray-50">
-            {/* Header */}
-            <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
-                <div className="w-full px-4 py-3">
-                    <div className="flex items-center justify-between w-full ">
-
-
-                        <div className="flex items-center space-x-6">
-                            <h1 className="text-2xl font-bold text-blue-600">Sociafly</h1>
-
-                            <nav className="flex space-x-4  ">
-                                <button
-                                    onClick={() => setActiveTab('home')}
-                                    className={`flex items-center space-x-2 px-2 lg:px-3 py-2 rounded-lg transition-colors ${
-                                        activeTab === 'home' ? 'bg-blue-50 text-blue-600' : 'text-gray-600 hover:text-blue-600'
-                                    }`}
-                                >
-                                    <Home size={20}  />
-                                    <span className="hidden lg:inline">Ana Sayfa</span>
-                                </button>
-
-                                <button
-                                    onClick={() => setActiveTab('trending')}
-                                    className={`flex items-center space-x-2 px-2 lg:px-3 py-2 rounded-lg transition-colors ${
-                                        activeTab === 'trending' ? 'bg-blue-50 text-blue-600' : 'text-gray-600 hover:text-blue-600'
-                                    }`}
-                                >
-                                    <TrendingUp size={20} />
-                                    <span className="hidden lg:inline">Trendler</span>
-                                </button>
-                            </nav>
-                        </div>
-
-                            {/* Search Bar */}
-                            <div className="relative ">
-                                <Search size={20}
-                                        className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"/>
-                                <input
-                                    type="text"
-                                    placeholder="Ara..."
-                                    className="pl-10 pr-4 py-2 bg-gray-100 rounded-full border-none focus:outline-none focus:ring-2 focus:ring-blue-500 w-48 lg:w-64"
-                                />
-                            </div>
-
-                            {/* Action Buttons */}
-                            <button className="relative p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-full transition-colors">
-                                <Bell size={20} />
-                                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
-                            </button>
-
-                            <button className="relative p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-full transition-colors">
-                                <Mail size={20} />
-                                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">7</span>
-                            </button>
-
-                            <button className="p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-full transition-colors">
-                                <User size={20} />
-                            </button>
-
-                    </div>
-                </div>
-            </header>
+        <div className="min-h-screen bg-gray-50 w-full">
+            {/* Material-UI Search App Bar */}
+            <SearchAppBar activeTab={activeTab} setActiveTab={setActiveTab} />
 
             <div className="w-full px-4 py-6">
                 <div className="max-w-7xl mx-auto">
