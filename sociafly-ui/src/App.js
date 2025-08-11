@@ -3,7 +3,9 @@ import { BrowserRouter, Route, Routes} from 'react-router-dom';
 import UserList from './components/UserList';
 import PostList from './components/PostList';
 import LoginForm from './components/LoginForm';
+import SocialMediaPlatform from "./components/SocialMediaPlatform";
 import './App.css';
+
 
 function Home() {
     return (
@@ -20,7 +22,7 @@ function App() {
   return (
     <BrowserRouter>
         <Routes>
-            <Route path="/" element={<Home/>} />
+            <Route path="/" element={<SocialMediaPlatform/>} />
             <Route path="/login" element={<LoginForm/>} />
         </Routes>
     </BrowserRouter>
